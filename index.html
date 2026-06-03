@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aman Enterprises - Sublimation Printing</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background: #0a1f4d;
+      color: #FFD700;
+      text-align: center;
+      padding: 30px 20px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      padding: 20px;
+      transition: 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .card h3 {
+      color: #0a1f4d;
+      margin: 10px 0 5px;
+    }
+    .card p {
+      color: #555;
+    }
+    .order-btn {
+      background: #FFD700;
+      color: #0a1f4d;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .order-btn:hover {
+      background: #FFA500;
+    }
+    /* Popup Form */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    .popup-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .next-btn, .pay-btn {
+      background: #0a1f4d;
+      color: #FFD700;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .next-btn:hover, .pay-btn:hover {
+      background: #FFD700;
+      color: #0a1f4d;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎨 Aman Enterprises</h1>
+    <p>Sublimation Printing & Creative Branding</p>
+  </header>
+
+  <section class="products">
+    <div class="card">
+      <img src="tshirt.jpg" alt="T-Shirt">
+      <h3>Customized T-Shirt</h3>
+      <p>₹300</p>
+      <button class="order-btn" onclick="openForm('Customized T-Shirt', 300)">Order Now</button>
+    </div>
+    <div class="card">
+      <img src="mug.jpg" alt="Mug">
+      <h3>Custom Mug</h3>
+      <p>₹250</p>
+      <button class="order-btn" onclick="openForm('Custom Mug', 250)">Order Now</button>
+    </div>
+    <div class="card">
+      <img src="frame.jpg" alt="Photo Frame">
+      <h3>Photo Frame (A4 Size)</h3>
+      <p>₹350</p>
+      <button class="order-btn" onclick="openForm('Photo Frame', 350)">Order Now</button>
+    </div>
+    <div class="card">
+      <img src="cushion.jpg" alt="Cushion">
+      <h3>Personalized Cushion</h3>
+      <p>₹350</p>
+      <button class="order-btn" onclick="openForm('Personalized Cushion', 350)">Order Now</button>
+    </div>
+    <div class="card">
+      <img src="cap.jpg" alt="Cap">
+      <h3>Customized Cap</h3>
+      <p>₹250</p>
+      <button class="order-btn" onclick="openForm('Customized Cap', 250)">Order Now</button>
+    </div>
+  </section>
+
+  <!-- Popup Form -->
+  <div class="popup" id="orderPopup">
+    <div class="popup-content" id="formStep1">
+      <h2>Order Details</h2>
+      <p id="productName"></p>
+      <input type="text" id="customerName" placeholder="Your Name" required>
+      <textarea id="customerAddress" placeholder="Your Address" required></textarea>
+      <input type="text" id="customerContact" placeholder="Contact Number" required>
+      <button class="next-btn" onclick="nextStep()">Next</button>
+    </div>
+
+    <div class="popup-content" id="formStep2" style="display:none;">
+      <h2>Payment</h2>
+      <p>Pay securely via UPI</p>
+      <a id="upiLink" href="#" target="_blank">
+        <button class="pay-btn">Pay via UPI</button>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    let selectedProduct = '';
+    let selectedPrice = 0;
+
+    function openForm(product, price) {
+      selectedProduct = product;
+      selectedPrice = price;
+      document.getElementById('productName').innerText = product + ' - ₹' + price;
+      document.getElementById('orderPopup').style.display = 'flex';
+      document.getElementById('formStep1').style.display = 'block';
+      document.getElementById('formStep2').style.display = 'none';
+    }
+
+    function nextStep() {
+      const name = document.getElementById('customerName').value;
+      const address = document.getElementById('customerAddress').value;
+      const contact = document.getElementById('customerContact').value;
+
+      if (!name || !address || !contact) {
+        alert('Please fill all details.');
+        return;
+      }
+
+      const upi = `upi://pay?pa=9113737645@axl&pn=Aman%20Enterprises&am=${selectedPrice}&cu=INR&tn=${selectedProduct}`;
+      document.getElementById('upiLink').href = upi;
+
+      document.getElementById('formStep1').style.display = 'none';
+      document.getElementById('formStep2').style.display = 'block';
+    }
+
+    window.onclick = function(event) {
+      const popup = document.getElementById('orderPopup');
+      if (event.target == popup) {
+        popup.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
