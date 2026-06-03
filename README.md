@@ -121,10 +121,10 @@
   <section class="contact">
     <h2>📞 Contact Us</h2>
     <p>Habibpur, Sahibganj, Jharkhand – 816109</p>
-    <p><strong>Phone:</strong> <a href="tel:+919876543210" style="color:#FFD700;">9876543210</a></p>
+    <p><strong>Phone:</strong> <a href="tel:+9113737645" style="color:#FFD700;">9113737645</a></p>
     <div>
-      <a href="tel:+919876543210" class="btn btn-primary">Call Now</a>
-      <a href="https://wa.me/919876543210" class="btn btn-secondary" target="_blank">WhatsApp</a>
+      <a href="tel:+9113737645" class="btn btn-primary">Call Now</a>
+      <a href="https://wa.me/9113737645" class="btn btn-secondary" target="_blank">WhatsApp</a>
     </div>
   </section>
 
@@ -133,4 +133,3 @@
   </footer>
 </body>
 </html>
-
