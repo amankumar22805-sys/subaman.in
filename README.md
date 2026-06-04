@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <img src="WhatsApp Image 2026-05-31 at 7.47.18 PM.jpeg" alt="Custom T-Shirt">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aman Enterprises - Sublimation Printing</title>
